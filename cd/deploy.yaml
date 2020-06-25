@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: springforkube-v2
-        image: springforkube:2
+        image: springforkube:latest
         ports:
         - containerPort: 8080
         imagePullPolicy: Never
