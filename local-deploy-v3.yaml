@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springforkube-v3
+  labels:
+    app: springforkube-v3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springforkube-v3
+  template:
+    metadata:
+      labels:
+        app: springforkube-v3
+    spec:
+      containers:
+      - name: springforkube-v3
+        image: springforkube:3
+        ports:
+        - containerPort: 8080
+        imagePullPolicy: Never
+
+        volumeMounts:
+          - name: test-volume1
+            mountPath: /var/www/config/test1
+          - name: test-volume2
+            mountPath: /var/www/config/test2
+
+      volumes:
+        - name: test-volume1
+          configMap:
+            name: test1
+        - name: test-volume2
+          configMap:
+            name: test2
+
+
